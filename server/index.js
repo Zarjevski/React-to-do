@@ -9,6 +9,8 @@ require("dotenv").config();
 app.use(express.json());
 
 // routes
+app.use(express.static("../build"));
+app.use(express.static("../public"));
 app.use("/todo", todos);
 
 const startServer = async () => {
