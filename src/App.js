@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./App.css";
 import Todos from "./Todos";
 import Form from "./Form";
+import axios from "axios";
 
 const App = () => {
   const [todos, setTodos] = useState([]);
@@ -16,6 +17,16 @@ const App = () => {
     }
   };
 
+  const removeTodo = async (_id) => {
+    try {
+      const newTodos = todos.filter((todo) => todo._id !== _id);
+      const remove = await axios.delete(`/todo/${_id}`);
+      setTodos(newTodos);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   useEffect(() => {
     getData();
   }, []);
@@ -23,7 +34,7 @@ const App = () => {
   return (
     <main>
       <Form />
-      <Todos todos={todos} />
+      <Todos todos={todos} removeTodo={removeTodo} />
     </main>
   );
 };

@@ -2,7 +2,13 @@
 
 ## simple to do list using:
 
-- react 18
-- node.js
-- express
-- mongoDB
+- React.js
+- Node.js
+- Express
+- MongoDB
+
+## for use:
+
+install all modules and deps running npm install
+setup your own .env with an mongoDB connection string
+change the process.env.YOUR_STRING_NAME
