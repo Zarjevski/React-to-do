@@ -1,22 +1,32 @@
 import React, { useState } from "react";
+import axios from "axios";
+import "./App.css";
 
-const Form = () => {
-  const [newTodo, setNewTodo] = useState("");
+const Form = ({ getData }) => {
+  const [name, setName] = useState("");
+  const handleSubmit = async () => {
+    const createTodo = await axios.post("/todo", { name });
+    setName("");
+    getData();
+  };
   return (
-    <form
-      onSubmit={(e) => {
-        e.preventDefault();
-      }}
-    >
+    <form onSubmit={(e) => e.preventDefault()} className="create-form">
       <input
         type="text"
         placeholder="new"
-        name="{newTodo}"
+        name="{name}"
         onChange={(e) => {
-          setNewTodo(e.target.value);
+          setName(e.target.value);
         }}
       />
-      <button>new</button>
+      <button
+        type="submit"
+        onClick={() => {
+          handleSubmit();
+        }}
+      >
+        new
+      </button>
     </form>
   );
 };

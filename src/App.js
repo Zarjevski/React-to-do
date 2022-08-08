@@ -33,7 +33,7 @@ const App = () => {
 
   return (
     <main>
-      <Form />
+      <Form getData={getData} />
       <Todos todos={todos} removeTodo={removeTodo} />
     </main>
   );
