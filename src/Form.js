@@ -24,8 +24,9 @@ const Form = ({ getData }) => {
         onClick={() => {
           handleSubmit();
         }}
+        style={{ fontSize: "1.8rem" }}
       >
-        new
+        +
       </button>
     </form>
   );

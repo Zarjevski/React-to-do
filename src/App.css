@@ -6,3 +6,53 @@ main {
     width: 100%;
     height: 100vh;
 }
+button {
+    cursor: pointer;
+}
+
+.create-form {
+    width: 30%;
+    height: 30vh;
+    background-color: aqua;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.create-form input {
+    height: 3rem;
+    width: 70%;
+    font-size: 1.8rem;
+    padding: 5px;
+}
+
+.create-form button {
+    height: 3rem;
+    width: 10%;
+}
+
+.todo {
+    margin-top: 10px;
+    width: 30vw;
+    height: 8vh;
+    font-size: 1.8rem;
+    display: flex;
+    align-items: center;
+    background-color: aqua;
+    justify-content: space-around;
+}
+
+.completed-btn {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: green;
+}
+
+.uncompleted-btn {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        background: none;
+        border: 4px solid white;
+}
