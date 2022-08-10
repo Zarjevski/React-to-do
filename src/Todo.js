@@ -1,17 +1,8 @@
 import React, { useState } from "react";
 import axios from "axios";
 
-const Todo = ({ _id, name, completed, removeTodo }) => {
+const Todo = ({ _id, name, completed, removeTodo, renderList }) => {
   const [edit, setEdit] = useState(false);
-  const [finish, setFinish] = useState(completed);
-
-  const complete = async (_id) => {
-    console.log(completed);
-    if (!completed) {
-      await axios.patch(`/todo/${_id}`, { completed: true });
-      setFinish(!completed);
-    }
-  };
   const CompletedButton = () => {
     if (completed) {
       return <button className="completed-btn"></button>;
@@ -20,8 +11,15 @@ const Todo = ({ _id, name, completed, removeTodo }) => {
         <button
           type="submit"
           className="uncompleted-btn"
-          onClick={(e) => {
-            complete();
+          onClick={async () => {
+            try {
+              if (!completed) {
+                await axios.patch(`/todo/${_id}`, { completed: true });
+                renderList();
+              }
+            } catch (error) {
+              console.log(error);
+            }
           }}
         ></button>
       );

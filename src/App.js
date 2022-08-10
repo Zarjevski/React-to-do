@@ -34,7 +34,7 @@ const App = () => {
   return (
     <main>
       <Form getData={getData} />
-      <Todos todos={todos} removeTodo={removeTodo} />
+      <Todos todos={todos} removeTodo={removeTodo} renderList={getData} />
     </main>
   );
 };
