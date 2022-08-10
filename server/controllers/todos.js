@@ -51,8 +51,20 @@ const deleteTodo = async (req, res) => {
   }
 };
 
-const updateTodo = (req, res) => {
-  res.status(200).json({ success: true });
+const updateTodo = async (req, res) => {
+  const { name, completed } = req.body;
+  const { id } = req.params;
+  try {
+    const update = await Todo.findOneAndUpdate(
+      { id },
+      { name: name, completed: completed }
+    );
+    res
+      .status(200)
+      .json({ success: true, msg: `the todo with id of ${id} was updated!` });
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 module.exports = {

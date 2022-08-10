@@ -3,11 +3,13 @@ import axios from "axios";
 
 const Todo = ({ _id, name, completed, removeTodo }) => {
   const [edit, setEdit] = useState(false);
-  const complete = async () => {
+  const [finish, setFinish] = useState(completed);
+
+  const complete = async (_id) => {
+    console.log(completed);
     if (!completed) {
-      const finish = await axios.patch(`/todo/${_id}`, {
-        completed: true,
-      });
+      await axios.patch(`/todo/${_id}`, { completed: true });
+      setFinish(!completed);
     }
   };
   const CompletedButton = () => {
@@ -18,7 +20,7 @@ const Todo = ({ _id, name, completed, removeTodo }) => {
         <button
           type="submit"
           className="uncompleted-btn"
-          onClick={() => {
+          onClick={(e) => {
             complete();
           }}
         ></button>
@@ -29,8 +31,10 @@ const Todo = ({ _id, name, completed, removeTodo }) => {
   return (
     <article className="todo">
       <h4>{name}</h4>
-      <CompletedButton />
-      <button onClick={() => removeTodo(_id)}>delete</button>
+      <div className="btn-container">
+        <CompletedButton />
+        <button onClick={() => removeTodo(_id)}>delete</button>
+      </div>
     </article>
   );
 };
